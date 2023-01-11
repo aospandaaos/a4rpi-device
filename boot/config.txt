@@ -1,0 +1,13 @@
+kernel=u-boot.bin
+arm_64bit=1
+device_tree=bcm2711-rpi-4-b.dtb
+dtparam=audio=on
+dtoverlay=vc4-kms-v3d-pi4
+initramfs ramdisk.img followkernel
+disable_overscan=1
+
+# Serial console
+enable_uart=1
+
+# Set USB-C port to OTG (gadget) mode
+dtoverlay=dwc2,dr_mode=peripheral

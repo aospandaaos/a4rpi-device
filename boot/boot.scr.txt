@@ -1,0 +1,18 @@
+# Boot script for RPi4
+#fatload mmc 0:1 1000000 boot.img
+# fdt_addr=2eff4000
+#fdt addr ${fdt_addr}
+#fdt get value bootargs /chosen bootargs
+#setenv initrd_high 0x01f00000
+#bootm 1000000
+
+fatload mmc 0:1 10000000 Image.gz
+#fdt addr ${fdt_addr}
+#fdt get value bootargs /chosen bootargs
+setenv kernel_comp_size $filesize
+setenv kernel_comp_addr_r 20000000
+
+# This is cribbed from ... not quite sure
+setenv bootargs "coherent_pool=1M 8250.nr_uarts=1 snd_bcm2835.enable_compat_alsa=0 snd_bcm2835.enable_hdmi=1 video=HDMI-A-1:1920x1080M@60 smsc95xx.macaddr=DC:A6:32:55:13:BD vc_mem.mem_base=0x3ec00000 vc_mem.mem_size=0x40000000 console=ttyS0,115200 no_console_suspend root=/dev/ram0 rootwait androidboot.hardware=rpi4 androidboot.selinux=permissive printk.devkmsg=on"
+fatload mmc 0:1 18000000 ramdisk.img
+booti 10000000 18000000:${filesize} ${fdt_addr}

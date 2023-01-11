@@ -1,0 +1,5 @@
+/dev/block/platform/emmc2bus/fe340000.mmc/by-name/system   /system  ext4   ro,barrier=1  wait,first_stage_mount
+/dev/block/platform/emmc2bus/fe340000.mmc/by-name/vendor   /vendor  ext4   ro,barrier=1  wait,first_stage_mount
+/dev/block/platform/emmc2bus/fe340000.mmc/by-name/userdata /data    ext4   noatime,nosuid,nodev,nomblk_io_submit,errors=panic  wait
+
+/devices/platform/soc/*.usb/usb*  auto  auto  defaults  voldmanaged=usb:auto
